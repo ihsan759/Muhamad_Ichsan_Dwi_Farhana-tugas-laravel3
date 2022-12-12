@@ -9,8 +9,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        
-        <a href="{{ route('blog.create') }}" class="btn btn-primary mb-2">Buat Konten</a>
+        @if (session()->get("logged", false))
+            <a href="{{ route('blog.create') }}" class="btn btn-primary mb-2">Buat Konten</a>
+        @endif
         <table class="table table-dark text-center">
             <thead>
                 <th>No</th>
@@ -32,9 +33,11 @@
                             <form action="{{ route('blog.destroy', $item->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
-                                <a href="{{ route('blog.show', $item->id) }}" class="btn btn-success">Detail</a>
-                                <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                <button onclick="return confirm('Apakah anda ingin menghapus blog ini ?')" type="submit" class="btn btn-danger">Delete</button>
+                                <a href="{{ route('blog.show', ['blog' => $item]) }}" class="btn btn-success">Detail</a>
+                                @if (session()->get("logged", false))
+                                    <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                    <button onclick="return confirm('Apakah anda ingin menghapus blog ini ?')" type="submit" class="btn btn-danger">Delete</button>
+                                @endif
                             </form>
                         </td>
                     </tr>

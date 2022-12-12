@@ -6,7 +6,7 @@
         <a href="{{ route('blog.index') }}" class="btn btn-warning mb-2">Kembali</a>
         <div class="card">
             <div class="card-header">
-                <img src="{{ $blog->cover }}" class="card-img-top" alt="cover.jpg" style="height: 250px;">
+                <img src="{{ $blog->cover }}" class="mx-auto d-block" alt="cover.jpg" >
             </div>
             <div class="card-body">
               <h5 class="card-title text-center">{{ $blog->judul }}</h5>

@@ -1,7 +1,7 @@
 @extends('products.template.parent')
 
 @section('content')
-    <div class="container mt-5 col-8 mx-auto">
+    <div class="container mt-5 mx-auto">
         @if (session()->has('success'))    
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -9,8 +9,10 @@
             </div>
         @endif
 
-        <a href="{{ route('products.create') }}" class="btn btn-primary mb-2">Tambah Produk</a>
-        <table class="table table-dark table-hover text-center">
+        @if (session()->get("logged", false))
+            <a href="{{ route('products.create') }}" class="btn btn-primary mb-2">Tambah Produk</a>
+        @endif
+            <table class="table table-dark table-hover text-center">
             <thead>
                 <th>No</th>
                 <th>Nama Barang</th>
